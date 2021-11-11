@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          ref: main
 
       - name: Run tests and lint the code
         run: ./gradlew --no-daemon clean check
