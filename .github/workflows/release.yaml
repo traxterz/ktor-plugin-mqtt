@@ -13,7 +13,9 @@ jobs:
           path: main
 
       - name: Run tests and lint the code
-        run: ./gradlew --no-daemon clean check
+        run: |
+          echo $PWD
+          ./gradlew --no-daemon clean check
 
       - name: Create Github Release
         uses: codfish/semantic-release-action@v1
