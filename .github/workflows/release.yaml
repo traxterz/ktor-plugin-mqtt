@@ -15,6 +15,7 @@ jobs:
       - name: Run tests and lint the code
         run: |
           cd main
+          ls -la
           ./gradlew --no-daemon clean check
 
       - name: Create Github Release
