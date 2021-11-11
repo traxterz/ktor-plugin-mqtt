@@ -1,0 +1,19 @@
+name: Run tests on pushing new commits
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Commit check
+        uses: docker://commitsar/commitsar:latest@sha256:4e1d112924e8cffc829c39291f26e11d45539b40204f287647cac34bbfc4654c
+
+      - name: Code Check
+        run: ./gradlew --no-daemon clean check

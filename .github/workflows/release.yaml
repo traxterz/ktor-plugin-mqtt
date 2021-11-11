@@ -1,0 +1,20 @@
+name: Release on new merge into main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+
+      - name: Run tests and lint the code
+        run: ./gradlew --no-daemon clean check
+
+      - name: Create Github Release
+        uses: codfish/semantic-release-action@v1
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
