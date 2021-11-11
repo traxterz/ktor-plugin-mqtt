@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.traxter.ktor.mqtt.BaseTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-11T14:32:30" hostname="143941S0" time="0.015">
+  <properties/>
+  <testcase name="base test()" classname="io.traxter.ktor.mqtt.BaseTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

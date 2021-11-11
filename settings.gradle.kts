@@ -1,2 +1,2 @@
-rootProject.name = "jvm-lib-template"
-
+rootProject.name = "ktor-plugin-mqtt"
+include("lib")
