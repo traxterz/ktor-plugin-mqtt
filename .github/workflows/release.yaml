@@ -12,10 +12,15 @@ jobs:
         with:
           ref: main
 
-      - name: Run tests and lint the code
-        run: |
-          ls -la
-          gradlew --no-daemon clean check
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Check with Gradle
+        run: ./gradlew clean check
 
       - name: Create Github Release
         uses: codfish/semantic-release-action@v1
