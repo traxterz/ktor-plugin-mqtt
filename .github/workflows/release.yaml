@@ -14,7 +14,6 @@ jobs:
 
       - name: Run tests and lint the code
         run: |
-          cd ..
           ls -la
           ./gradlew --no-daemon clean check
 
