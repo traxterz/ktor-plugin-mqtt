@@ -7,14 +7,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          path: main
+          ref: main
 
       - name: Run tests and lint the code
         run: |
-          cd main
           ls -la
           gradlew --no-daemon clean check
 
