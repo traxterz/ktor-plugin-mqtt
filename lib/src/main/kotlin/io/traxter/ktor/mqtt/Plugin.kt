@@ -30,7 +30,6 @@ import org.eclipse.paho.mqttv5.client.MqttAsyncClient as PahoMqttClient
 fun Application.Mqtt(config: Mqtt.Configuration.() -> Unit) =
     install(Mqtt, config)
 
-
 interface Mqtt : CoroutineScope, IMqttAsyncClient {
 
     class Configuration {
@@ -138,7 +137,6 @@ internal class MqttClientPlugin(
         connect(config.connectionOptions).waitForCompletion()
     }
 
-
     suspend fun publishMessageTo(
         topic: Topic,
         msg: String,
@@ -161,7 +159,6 @@ internal class MqttClientPlugin(
             .await()
             .also { messageListenerByTopic.remove(topic) }
 
-
     override fun shutdown() {
         logger.info("shutting down Mqtt")
         parent.complete()
@@ -170,5 +167,3 @@ internal class MqttClientPlugin(
         disconnectForcibly()
     }
 }
-
-

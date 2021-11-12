@@ -3,7 +3,6 @@ package io.traxter.ktor.mqtt
 import io.ktor.application.feature
 import io.ktor.routing.Route
 import io.ktor.routing.application
-import io.ktor.routing.route
 import io.ktor.util.pipeline.ContextDsl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
