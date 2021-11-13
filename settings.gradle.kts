@@ -1,2 +1,2 @@
-rootProject.name = "ktor-plugin-mqtt-client"
+rootProject.name = "ktor-plugin-mqtt"
 include("lib")

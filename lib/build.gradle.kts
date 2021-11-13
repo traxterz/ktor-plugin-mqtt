@@ -48,9 +48,9 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 publishing {
     (publications) {
-        register("ktor-plugin-mqtt-client", MavenPublication::class) {
+        register("ktor-plugin-mqtt", MavenPublication::class) {
             groupId = "com.github.traxterz"
-            artifactId = "ktor-plugin-mqtt-client"
+            artifactId = "ktor-plugin-mqtt"
             from(components["java"])
             artifact(sourcesJar)
         }
