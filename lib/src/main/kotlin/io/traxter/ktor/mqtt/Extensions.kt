@@ -1,9 +1,8 @@
 package io.traxter.ktor.mqtt
 
-import io.ktor.application.feature
-import io.ktor.routing.Route
-import io.ktor.routing.application
-import io.ktor.util.pipeline.ContextDsl
+import io.ktor.server.application.*
+import io.ktor.server.routing.*
+import io.ktor.util.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -36,16 +35,17 @@ class TopicContext(val topic: Topic, private val mqttClient: Mqtt) {
         mqttClient.publish(topic, MqttMessage(msg.toByteArray(), qos.level, retained, MqttProperties())).await()
 }
 
-@ContextDsl
+@KtorDsl
 fun Route.topic(topic: String, qos: QualityOfService = AtMostOnce, listener: MessageListener): Job {
-    val client = application.feature(Mqtt)
+    val client = application.plugin(Mqtt)
     val validTopic = Topic(topic)
+    client.addTopicListener(validTopic, listener)
     return client.launch {
         client.subscribe(validTopic.value, qos.level).await()
-        client.addTopicListener(validTopic, listener)
     }
 }
 
+@OptIn()
 suspend fun Mqtt.publishMessageTo(
     topic: Topic,
     msg: String,
@@ -57,7 +57,7 @@ suspend fun Mqtt.publishMessageTo(
     publish(topic.value, message.payload, qos.level, retained).await()
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn()
 suspend fun Mqtt.subscribeTo(topic: Topic, qos: QualityOfService, listener: IMqttMessageListener) {
     subscribe(MqttSubscription(topic.value, qos.level), listener).await()
 }
